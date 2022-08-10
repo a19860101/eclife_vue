@@ -11,8 +11,8 @@
 <body>
     <div id="app">
         <h1>{{title}}</h1>
-        <div>
-            {{products[0]}}
+        <div v-for="product,idx in products">
+            <div>@{{idx}} -- {{product.name}} -- {{product.price}}</div>
         </div>
     </div>
     <script>
@@ -20,7 +20,18 @@
             data(){
                 return {
                     title: 'Hello Vue!!',
-                    products: ['test 1','test 2']
+                    products: [
+                        {
+                            id: 1,
+                            name: 'test 1',
+                            price: '100'
+                        },
+                        {
+                            id: 2,
+                            name: 'test 2',
+                            price: '999'
+                        }
+                    ]
                 }
             }
         });
