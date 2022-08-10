@@ -14,20 +14,30 @@
             <input type="submit" @click.right="test2()" value="click me">
         </form>
         <a href="https://tw.yahoo.com" @click.prvent="test2()">yahoo</a>
+        <div>
+            <button @click="minus()">-</button>
+            <h2>{{count}}</h2>
+            <button @click="count += 1">+</button>
+        </div>
     </div>
     <script>
         Vue.createApp({
             data(){
-                return {}
+                return {
+                    count: 0,
+                    title: 'hello vue'
+                }
             },
             methods:{
+                minus(){
+                    this.count -= 1;
+                },
                 test(){
-                    alert('test');
+                    alert(this.title);
                 },
                 test2(){
                     console.log('test2');
                 }
-
             }
         }).mount('#app');
     </script>
