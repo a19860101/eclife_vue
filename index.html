@@ -26,12 +26,16 @@
         <div v-show="number > 10">
             test
         </div>
+        <img :src="cover" alt="">
+        <a :href="link">{{link}}</a>
     </div>
     <script>
         const app = Vue.createApp({
             data(){
                 return {
                     title: 'Hello Vue!!',
+                    link: 'https://tw.yahoo.com',
+                    cover:'https://picsum.photos/id/32/300',
                     number: 10,
                     products: [
                         {
