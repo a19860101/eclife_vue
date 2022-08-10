@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="test()">click</button>
+        <form action="" method="get">
+            <input type="submit" @click.right="test2()" value="click me">
+        </form>
+        <a href="https://tw.yahoo.com" @click.prvent="test2()">yahoo</a>
+    </div>
+    <script>
+        Vue.createApp({
+            data(){
+                return {}
+            },
+            methods:{
+                test(){
+                    alert('test');
+                },
+                test2(){
+                    console.log('test2');
+                }
+
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
