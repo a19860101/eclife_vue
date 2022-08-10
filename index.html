@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://unpkg.com/vue@3"></script>
-
+    <style>
+        .active {
+            color: greenyellow;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -28,6 +32,16 @@
         </div>
         <img :src="cover" alt="">
         <a :href="link">{{link}}</a>
+        <div :style="{background:textColor}">
+            hello
+        </div>
+        <div :class="{active: isActive}">
+            hello
+        </div>
+        <input type="text" v-model="account">
+        {{account}}
+        <input type="radio" name="test" v-model="isActive">test 1
+        <input type="radio" name="test" v-model="isActive">test 2
     </div>
     <script>
         const app = Vue.createApp({
@@ -36,7 +50,10 @@
                     title: 'Hello Vue!!',
                     link: 'https://tw.yahoo.com',
                     cover:'https://picsum.photos/id/32/300',
+                    textColor: 'red',
+                    isActive: true,
                     number: 10,
+                    account: 'default',
                     products: [
                         {
                             id: 1,
