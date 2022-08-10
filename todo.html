@@ -12,7 +12,12 @@
         <input type="text" v-model="input">
         <button @click="addItem()">click</button>
         <ul>
-            <li v-for="todo in todos">{{todo}}</li>
+            <li v-for="todo,idx in todos">
+                {{todo}}
+                <form action="" method="post">
+                    <input type="submit" value="刪除" @click.prevent="deleteItem(idx)">
+                </form>
+            </li>
         </ul>
     </div>
     <script>
@@ -21,7 +26,7 @@
                 return {
                     todos:[
                         'test 1',
-                        'test 2'
+                        'test 2',
                     ],
                     input:''
                 }
@@ -30,6 +35,9 @@
                 addItem(){
                     this.todos.push(this.input);
                     this.input = '';
+                },
+                deleteItem(idx){
+                    this.todos.splice(idx,1);
                 }
             }
         }).mount('#app');
