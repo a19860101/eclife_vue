@@ -13,7 +13,8 @@
         <button @click="addItem()">click</button>
         <ul>
             <li v-for="todo,idx in todos">
-                {{todo}}
+                <input type="checkbox" name="todo" v-model="todo.isCompleted">
+                {{todo.title}}
                 <form action="" method="post">
                     <input type="submit" value="刪除" @click.prevent="deleteItem(idx)">
                 </form>
@@ -25,15 +26,32 @@
             data(){
                 return {
                     todos:[
-                        'test 1',
-                        'test 2',
+                        {
+                            id: 1,
+                            title: '洗衣服',
+                            isCompleted: true,
+                        },
+                        {
+                            id: 2,
+                            title: '澆花',
+                            isCompleted: false,
+                        },
+                        {
+                            id: 3,
+                            title: '遛狗',
+                            isCompleted: true,
+                        },
                     ],
                     input:''
                 }
             },
             methods:{
                 addItem(){
-                    this.todos.push(this.input);
+                    this.todos.push({
+                        id: Date.now(),
+                        title: this.input,
+                        isCompleted: false
+                    });
                     this.input = '';
                 },
                 deleteItem(idx){
