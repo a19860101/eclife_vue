@@ -14,12 +14,25 @@
         <div v-for="product,idx in products">
             <div>@{{idx}} -- {{product.name}} -- {{product.price}}</div>
         </div>
+        <div v-if="number > 10">
+            庫存充足
+        </div>
+        <!-- <div v-else-if="number > 0">
+            尚有庫存
+        </div>
+        <div v-else>
+            補貨中
+        </div> -->
+        <div v-show="number > 10">
+            test
+        </div>
     </div>
     <script>
         const app = Vue.createApp({
             data(){
                 return {
                     title: 'Hello Vue!!',
+                    number: 10,
                     products: [
                         {
                             id: 1,
