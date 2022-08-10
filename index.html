@@ -40,8 +40,14 @@
         </div>
         <input type="text" v-model="account">
         {{account}}
-        <input type="radio" name="test" v-model="isActive">test 1
-        <input type="radio" name="test" v-model="isActive">test 2
+        <input type="radio" name="test" v-model="gender" value="男">男
+        <input type="radio" name="test" v-model="gender" value="女">女
+        {{gender}}
+
+        <input type="checkbox" name="test2" value="3C" v-model="category">
+        <input type="checkbox" name="test2" value="家電" v-model="category">
+        <input type="checkbox" name="test2" value="廚房" v-model="category">
+        <div v-for="data in category">{{data}}</div>
     </div>
     <script>
         const app = Vue.createApp({
@@ -52,6 +58,8 @@
                     cover:'https://picsum.photos/id/32/300',
                     textColor: 'red',
                     isActive: true,
+                    gender:'',
+                    category: [],
                     number: 10,
                     account: 'default',
                     products: [
