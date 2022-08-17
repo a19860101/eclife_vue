@@ -11,7 +11,7 @@
     <div id="app">
         <input type="text" v-model="input">
         <button @click="addItem()">click</button>
-        <h2>未完成</h2>
+        <h2 v-show="todoUnCompleted.length > 0">未完成</h2>
         <ul>
             <li v-for="todo,idx in todoUnCompleted" :key="todo.id">
                 <input type="checkbox" name="todo" v-model="todo.isCompleted">
@@ -21,7 +21,7 @@
                 </form>
             </li>
         </ul>
-        <h2>已完成</h2>
+        <h2 v-show="todoCompleted.length > 0">已完成</h2>
         <ul>
             <li v-for="todo,idx in todoCompleted" :key="todo.id">
                 <input type="checkbox" name="todo" v-model="todo.isCompleted">
@@ -71,7 +71,10 @@
                     // this.todos = this.todos.filter(function(data){
                     //     return data.id != id;
                     // });
-                    this.todos = this.todos.filter(data => data.id != id);
+                    if(confirm('確認刪除？')){
+
+                        this.todos = this.todos.filter(data => data.id != id);
+                    }
 
                 }
             },
@@ -82,7 +85,6 @@
                 todoUnCompleted(){
                     return this.todos.filter(data => data.isCompleted === false);
                 },
-
             }
         }).mount('#app');
     </script>
