@@ -134,10 +134,10 @@
                 //     this.products = data;
                 // })
                 axios(url)
-                    .then(res => {
-                        console.log(res);
-                        this.products = res.data;
-                    })
+                .then(res => {
+                    console.log(res);
+                    this.products = res.data;
+                })
             },
 
         }).mount('#app');
