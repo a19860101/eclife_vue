@@ -49,6 +49,7 @@
                 </div>
             </div>
         </nav>
+        {{priceArray}}
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-3 col-sm-6" v-for="product,idx in products" :key="product.id">
@@ -75,19 +76,22 @@
             <div class="offcanvas-body">
                 <div v-show="carts.length === 0">目前尚未有商品</div>
                 <a href="#" @click="clearCarts()" v-show="carts.length > 0">清空購物車</a>
-                <div v-for="cart in carts">
-                    <div>
-                        {{cart.title}}
-                        {{cart.price}}
+                <div v-for="cart in carts" class="pt-3">
+                    <div class="d-flex justify-content-between">
+                        <h5>{{cart.title}}</h5>
+                        <div>{{cart.price}}</div>
                     </div>
                     <a href="#" @click="removeCartItem(cart.id)">移除</a>
                     <hr>
                 </div>
+                <div>
+                    
+                    總金額：
+                    {{total}}
+                </div>
             </div>
         </div>
     </div>
-
-
 
     <script>
         Vue.createApp({
@@ -109,6 +113,18 @@
                     this.carts = this.carts.filter(data => data.id != id);
                 }
             },
+            computed:{
+                // priceArray(){
+                //     return this.carts.map(data => data.price);
+                // },
+                // total(){
+                //     return this.priceArray.reduce((a,b) => a + b);
+                // }
+                total(){
+                    return this.carts.map(data=>data.price).reduce((a,b) => a+b);
+                }
+            },
+
             created() {
                 const url = 'https://fakestoreapi.com/products';
                 // fetch(url)
