@@ -41,7 +41,7 @@
                             <a class="nav-link disabled">Disabled</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <a href="" class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">購物車</a>
                         </li>
@@ -59,24 +59,30 @@
                             <div>{{product.price}}</div>
                         </div>
                         <form action="">
-                            <input type="submit" class="btn btn-sm btn-primary" value="加入購物車">
+                            <input type="submit" class="btn btn-sm btn-primary" value="加入購物車" @click.prevent="addToCart(product.id)">
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">購物車列表</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div v-for="cart in carts">
+                    <div>
+                        {{cart.title}}
+                        {{cart.price}}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button>
 
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            ...
-        </div>
-    </div>
+
+
     <script>
         Vue.createApp({
             data() {
@@ -85,7 +91,12 @@
                     carts:[]
                 }
             },
-            methods: {},
+            methods: {
+                addToCart(id){
+                    let item = this.products.find(data => data.id === id);
+                    this.carts.push(item);
+                }
+            },
             created() {
                 const url = 'https://fakestoreapi.com/products';
                 // fetch(url)
