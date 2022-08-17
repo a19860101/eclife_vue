@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
 
 </head>
 <body>
@@ -25,10 +26,15 @@
             methods:{},
             created(){
                 const url = 'https://fakestoreapi.com/products';
-                fetch(url)
-                .then(res => res.json())
-                .then(data => {
-                    this.products = data;
+                // fetch(url)
+                // .then(res => res.json())
+                // .then(data => {
+                //     this.products = data;
+                // })
+                axios(url)
+                .then(res => {
+                    console.log(res);
+                    this.products = res.data;
                 })
             },
 
