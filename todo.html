@@ -11,15 +11,27 @@
     <div id="app">
         <input type="text" v-model="input">
         <button @click="addItem()">click</button>
+        <h2>未完成</h2>
         <ul>
-            <li v-for="todo,idx in todos">
+            <li v-for="todo,idx in todoUnCompleted" :key="todo.id">
                 <input type="checkbox" name="todo" v-model="todo.isCompleted">
                 {{todo.title}}
                 <form action="" method="post">
-                    <input type="submit" value="刪除" @click.prevent="deleteItem(idx)">
+                    <input type="submit" value="刪除" @click.prevent="deleteItem(todo.id)">
                 </form>
             </li>
         </ul>
+        <h2>已完成</h2>
+        <ul>
+            <li v-for="todo,idx in todoCompleted" :key="todo.id">
+                <input type="checkbox" name="todo" v-model="todo.isCompleted">
+                {{todo.title}}
+                <form action="" method="post">
+                    <input type="submit" value="刪除" @click.prevent="deleteItem(todo.id)">
+                </form>
+            </li>
+        </ul>
+        
     </div>
     <script>
         Vue.createApp({
@@ -54,9 +66,23 @@
                     });
                     this.input = '';
                 },
-                deleteItem(idx){
-                    this.todos.splice(idx,1);
+                deleteItem(id){
+                    // this.todos.splice(idx,1);
+                    // this.todos = this.todos.filter(function(data){
+                    //     return data.id != id;
+                    // });
+                    this.todos = this.todos.filter(data => data.id != id);
+
                 }
+            },
+            computed:{
+                todoCompleted(){
+                    return this.todos.filter(data => data.isCompleted === true);
+                },
+                todoUnCompleted(){
+                    return this.todos.filter(data => data.isCompleted === false);
+                },
+
             }
         }).mount('#app');
     </script>
