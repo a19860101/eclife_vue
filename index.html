@@ -12,7 +12,8 @@
     <div id="app">
         <app-nav></app-nav>
         <h1>{{title}}</h1>
-        <app-button :msg="btnMsg" :target="btnTarget"></app-button>
+        <app-button :msg="btnMsg" :target="btnTarget" @add="addItem"></app-button>
+        {{items}}
     </div>
     <script type="module">
         import App from './js/App.js';

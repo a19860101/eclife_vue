@@ -5,12 +5,18 @@ export default {
         return {
             title:'hello vue',
             // btnMsg: '',
-            btnTarget: '#a'
+            btnTarget: '#a',
+            items:[],
         };
     },
     components: {
         'app-button':AppButton,
         'app-nav': Nav
     },
+    methods:{
+        addItem(data){
+            this.items.push(data);
+        }
+    }
 };
 
