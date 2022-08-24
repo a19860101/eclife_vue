@@ -3,7 +3,9 @@ import Nav from './components/Nav.js';
 export default {
     data() {
         return {
-            title:'hello vue'
+            title:'hello vue',
+            // btnMsg: '',
+            btnTarget: '#a'
         };
     },
     components: {
