@@ -1,6 +1,7 @@
 const btn = {
+    props:['msg','target'],
     template:`
-       <button>click me</button>
+       <button :href="target">{{msg}}</button>
     `,
 }
 
